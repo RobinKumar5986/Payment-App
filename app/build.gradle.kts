@@ -14,11 +14,21 @@ android {
         applicationId = "com.kgjr.paymettestapp"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("C:/Users/sachi/AndroidStudioProjects/Payment/paymentJks")
+            storePassword = "payment@#$6550"
+            keyAlias = "key0"
+            keyPassword = "payment@#$6550"
+        }
+    }
+
 
     buildTypes {
         release {
@@ -27,6 +37,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
@@ -42,7 +53,7 @@ android {
 }
 
 dependencies {
-    val billing_version = "8.3.0"
+    val billing_version = "6.1.0"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
